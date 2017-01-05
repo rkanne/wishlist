@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Welcome!</title>
+	{% load staticfiles %}
+  	<link rel="stylesheet" href="{% static 'wish_list/css/styles.css' %}">
+	<meta charset="utf-8">
+</head>
+<body>
+<div id="wrapper">
+<h2>Welcome!!</h2>
+<div class="register">
+<form action="/insert" method="POST">
+
+{% csrf_token %}
+  <h3>Register</h3>
+  <p>Name: <input type="text" name="name" id="name"></p>  
+  <p>Username: <input type="text" name="username" id="username"> </p>
+  <p>Password: <input type="text" name="password" id="password"></p>
+  <p>*Password should be at least 8 charecters</p>
+	<p>Confirm Password: <input type="text" name="confirm_password" id="confirm_password"></p>
+  <p>Date Hired: <input type="date" name="date_hired" id="date_hired"></p>
+  <p><input type="submit" name="register" id="register" value="Register"></p>
+
+</form>
+
+</div>
+<div class="login">
+<form action="/login" method="POST">
+{% csrf_token %}
+<h3>Login</h3>
+  <p>Username: <input type="text" name="username_login" id="username_login"> </p>
+  <p>Password: <input type="text" name="password_login" id="password_login"></p>
+  <p><input type="submit" name="login" id="login" value="Login"></p>
+
+</form>
+</div>
+{% for msg in messages %}       
+  <p class="message">
+ ***{{msg}}
+  </p>
+{% endfor %}
+
+</div>
+
+
+</body>
+</html>

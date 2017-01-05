@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Dashboard</title>
+		{% load staticfiles %}
+  	<link rel="stylesheet" href="{% static 'travelbuddy/css/styles.css' %}">
+</head>
+<body>
+<div id="wrapper">
+<h1>Hello,
+{{request.session.name}}
+	!</h4>
+	<div class="header"><h4><a href="/logout">Log out</a></div>
+</h1>
+<div class="trip_schedules">
+<h3>Your Wish List:</h3>
+<table>
+	<tr class="head">
+		<th>Item</th>
+		<th>Added By</th>
+		<th>Date Added</th>
+		<th>Action</th>
+	</tr>
+	{% for x in joins %}
+	<tr>
+		<td><a href='/wish_item/{{x.wishlist.id}}'>{{x.wishlist.item_name}}</a></td>	
+		<td>{{x.wishlist.user.name}}</td>
+		<td>{{x.wishlist.created_at}}</td>
+		<td>
+		{% if x.wishlist.user_id == request.session.user_id %}
+			<a href='/delete/{{x.wishlist.id}}'>Delete!</a>
+		{% endif %}
+		{% if x.wishlist.user_id != request.session.user_id %}
+			<a href='/remove/{{x.wishlist.id}}'>Remove from my Wishlist!</a>
+		{% endif %}
+		</td>
+		</tr>
+	{% endfor %}
+</table>
+		
+</div>
+<div class="travel_plan">
+{% for msg in messages %}       
+  <p class="message">
+ ***{{msg}}
+  </p>
+{% endfor %}
+<h4>Other User's Wish List</h4>
+	<table>
+		<tr  class="head">
+			<th>Item</th>
+			<th>Added By</th>
+			<th>Date Added</th>
+			<th>Action</th>
+		</tr>
+		{% for x in wishes_other %}
+		<tr>
+			<td>
+				<a href='/wish_item/{{x.id}}'>{{x.item_name}}</a>
+			</td>
+			<td>
+				{{x.user.name}}
+			</td>
+				
+			<td>{{x.created_at}}</td>
+			<td> 
+				<a href='/addwish/{{x.id}}'>Add to my Wishlist!</a>
+			</td>
+		</tr>	
+		{% endfor %}
+		
+	</table>
+	
+	<p>	<h4><a href='/wish_item/create'>Add Item!</a></h4>
+</p>
+</div>
+</div>
+</body>
+</html>

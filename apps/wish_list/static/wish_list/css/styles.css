@@ -1,0 +1,40 @@
+#wrapper{
+	padding: 30px;
+}
+table{
+	border-collapse: collapse;
+	width: 700px;
+}
+tr,td,th{
+	border: 2px solid black;
+}
+.destination{
+	padding: 20px;
+}
+.header{
+	width: 600px;
+	text-align: right;
+}
+.head{
+	background-color: #B6B9BA;
+}
+.register{
+	border:2px solid black;
+	width: 500px;
+	display: inline-block;
+	padding: 25px;
+	background-color: #D4D4D4;
+}
+.login{
+	border:2px solid black;
+	margin-left: 25px;
+	padding: 25px;
+	width: 500px;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #D4D4D4;
+
+}
+.message{
+	color: blue;
+}
